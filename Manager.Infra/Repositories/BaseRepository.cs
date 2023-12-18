@@ -24,13 +24,10 @@ namespace Manager.Infra.Repositories
 
         public async Task Delete(long id)
         {
-            var entity = Get(id);
+            var entity = await Get(id);
 
-            if (entity != null)
-            {
-                _context.Remove(entity);
-                await _context.SaveChangesAsync();
-            }
+            _context.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<T> Get(long id)
